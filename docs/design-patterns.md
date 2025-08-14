@@ -33,3 +33,10 @@ Used repository design pattern to manage data operations. This allows the use of
 Sources:
 1. [Repository pattern - What is it and why do we use it?](https://medium.com/@hunterfreas/repository-pattern-what-is-it-and-why-do-we-use-it-6a6a8e781711)
 
+### Data mapper (ORM)
+Hibernate maps entities to database tables automatically.
+
+Sources:
+1. [StackOverflow - Which pattern does hibernate follow?](https://stackoverflow.com/questions/1308096/which-pattern-does-hibernate-follow)
+2. [Medium - What is the Data Mapper Pattern?](https://hosseinnejati.medium.com/what-is-the-data-mapper-pattern-219ce6484e28)
+
