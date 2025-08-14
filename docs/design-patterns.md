@@ -26,3 +26,10 @@ Core business logic is isolated from external dependencies, which allows for eas
 
 Sources:
 1. [Medium - Understanding the service layer in software architecture](https://medium.com/@navroops38/understanding-the-service-layer-in-software-architecture-df9b676b3a16)
+
+### Repository design pattern
+Used repository design pattern to manage data operations. This allows the use of fake repositories. I can easily switch from H2 to PostgreSQL for production without editing my service.
+
+Sources:
+1. [Repository pattern - What is it and why do we use it?](https://medium.com/@hunterfreas/repository-pattern-what-is-it-and-why-do-we-use-it-6a6a8e781711)
+
