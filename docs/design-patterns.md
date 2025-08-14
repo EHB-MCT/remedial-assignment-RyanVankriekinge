@@ -21,3 +21,8 @@ The MVC pattern seperates the application in three layers:
 Sources:
 1. [Geeks for geeks - Spring MVC Framework](https://www.geeksforgeeks.org/springboot/spring-mvc-framework/)
 
+### Service layer
+Core business logic is isolated from external dependencies, which allows for easier testing, maintainability and reusability.
+
+Sources:
+1. [Medium - Understanding the service layer in software architecture](https://medium.com/@navroops38/understanding-the-service-layer-in-software-architecture-df9b676b3a16)
