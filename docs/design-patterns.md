@@ -40,3 +40,8 @@ Sources:
 1. [StackOverflow - Which pattern does hibernate follow?](https://stackoverflow.com/questions/1308096/which-pattern-does-hibernate-follow)
 2. [Medium - What is the Data Mapper Pattern?](https://hosseinnejati.medium.com/what-is-the-data-mapper-pattern-219ce6484e28)
 
+### Singleton design pattern (In Singleton Beans in Spring Boot)
+Spring Boot creates only one instance of some classes (e.g. @Service) and reuses this one for all requests. By default, these have a singleton scope.
+
+Sources:
+[Linkedin - Singleton Design Pattern in Java and Spring Boot: Understand and see it in practice!](https://www.linkedin.com/pulse/singleton-design-pattern-java-spring-boot-understand-see-bruno-haick-z2fhf#:~:text=In%20Spring%20Boot%2C%20the%20Singleton,managed%20by%20the%20Spring%20container.)
