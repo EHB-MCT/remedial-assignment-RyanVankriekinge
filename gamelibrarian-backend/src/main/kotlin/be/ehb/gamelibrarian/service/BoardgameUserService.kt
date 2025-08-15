@@ -17,3 +17,7 @@ class BoardgameUserService(
         }
         return users.save(BoardgameUser(name = name, email = email))
     }
+
+    fun get(id: Long): BoardgameUser =
+        users.findById(id).orElseThrow { NoSuchElementException("User $id not found") }
+}

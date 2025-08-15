@@ -29,3 +29,8 @@ class BoardgameUserController(
         val u = userService.create(req.name, req.email)
         return ResponseEntity.status(HttpStatus.CREATED).body(UserResponse.from(u))
     }
+
+    @GetMapping("/{id}")
+    fun get(@PathVariable id: Long): UserResponse =
+        UserResponse.from(userService.get(id))
+}
