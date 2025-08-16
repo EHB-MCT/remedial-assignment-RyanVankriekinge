@@ -68,4 +68,8 @@ class BoardgameController(
     @GetMapping("/{id}")
     fun get(@PathVariable id: Long): BoardgameResponse =
         BoardgameResponse.from(gameService.get(id))
+
+    @GetMapping
+    fun getAll(): List<BoardgameResponse> =
+        gameService.getAll().map { BoardgameResponse.from(it) }
 }
