@@ -35,4 +35,7 @@ class BoardgameService(
             )
         )
     }
+
+    fun get(id: Long): Boardgame =
+        games.findById(id).orElseThrow { NoSuchElementException("Boardgame $id not found") }
 }

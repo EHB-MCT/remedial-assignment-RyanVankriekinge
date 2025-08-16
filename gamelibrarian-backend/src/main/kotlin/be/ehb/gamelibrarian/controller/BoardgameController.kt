@@ -64,4 +64,8 @@ class BoardgameController(
         )
         return ResponseEntity.status(HttpStatus.CREATED).body(BoardgameResponse.from(g))
     }
+
+    @GetMapping("/{id}")
+    fun get(@PathVariable id: Long): BoardgameResponse =
+        BoardgameResponse.from(gameService.get(id))
 }
