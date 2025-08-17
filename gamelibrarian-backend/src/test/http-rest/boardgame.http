@@ -1,0 +1,53 @@
+### Get boardgame by Id
+GET http://localhost:8080/api/boardgames/1
+
+### Get all boardgames
+GET http://localhost:8080/api/boardgames
+
+### Add boardgames
+### MLEM
+POST http://localhost:8080/api/boardgames
+Content-Type: application/json
+
+{
+  "title": "MLEM: Space Agency",
+  "publisher": "Rebel Studio",
+  "year": 2024,
+  "minPlayers": 2,
+  "maxPlayers": 5,
+  "bggId": "387378",
+  "bggURL": "https://boardgamegeek.com/boardgame/387378/mlem-space-agency",
+  "imageURL": "https://cf.geekdo-images.com/CQ9o1kqExmBpHcPMVk0qwQ__imagepage/img/z6hmRBJb8Tv4t5n5N0UEzXIfAl0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7926071.jpg"
+}
+
+### Alhambra
+POST http://localhost:8080/api/boardgames
+Content-Type: application/json
+
+{
+"title": "Alhambra",
+"publisher": "Queen Games",
+"year": 2003,
+"minPlayers": 2,
+"maxPlayers": 6,
+"bggId": "6249",
+"bggURL": "https://boardgamegeek.com/boardgame/6249/alhambra",
+"imageURL": "https://cf.geekdo-images.com/OiqKsYDh7pqeRYKG__kMSw__itemrep/img/7RUFLxeNec7dSbH0d_t77bFj3mo=/fit-in/246x300/filters:strip_icc()/pic4893652.jpg"
+}
+
+### Ticket to ride: Europe
+POST http://localhost:8080/api/boardgames
+Content-Type: application/json
+
+{
+"title": "Ticket to Ride: Europe",
+"publisher": "Days of Wonder",
+"year": 2005,
+"minPlayers": 2,
+"maxPlayers": 5,
+"bggId": "14996",
+"bggURL": "https://boardgamegeek.com/boardgame/14996/ticket-to-ride-europe",
+"imageURL": "https://cf.geekdo-images.com/0K1AOciqlMVUWFPLTJSiww__itemrep/img/D9gFnF3e-NXcVjvkNUsn19C7cHQ=/fit-in/246x300/filters:strip_icc()/pic66668.jpg"
+}
+
+
