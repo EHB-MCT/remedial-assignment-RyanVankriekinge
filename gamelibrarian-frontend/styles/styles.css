@@ -1,5 +1,6 @@
 @import url(gamecard.css);
 @import url(nav.css);
+@import url(boardgame.css);
 
 .wrapper {
   max-width: 1200px;

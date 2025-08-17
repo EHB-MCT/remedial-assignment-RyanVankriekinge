@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Boardgame Details</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="boardgames.html">All Boardgames</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+
+    <div id="boardgameDetails" class="boardgame-details"></div>
+  </div>
+
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const gameId = getQueryParam("id");
+
+    fetch(`http://localhost:8080/api/boardgames/${gameId}`)
+      .then(response => response.json())
+      .then(game => {
+        const container = document.getElementById('boardgameDetails');
+
+        const img = document.createElement('img');
+        img.src = game.imageURL;
+        img.alt = game.title;
+
+        const title = document.createElement('h1');
+        title.textContent = game.title;
+
+        const publisher = document.createElement('p');
+        publisher.textContent = `Publisher: ${game.publisher}`;
+
+        const year = document.createElement('p');
+        year.textContent = `Release Year: ${game.releaseYear}`;
+
+        const players = document.createElement('p');
+        players.textContent = `Players: ${game.minPlayers} - ${game.maxPlayers}`;
+
+        const popularity = document.createElement('p');
+        popularity.textContent = `Popularity: ${game.popularity}`;
+
+        const bggLink = document.createElement('a');
+        bggLink.href = game.bggURL;
+        bggLink.textContent = "View on BoardGameGeek";
+        bggLink.target = "_blank";
+
+        container.appendChild(img);
+        container.appendChild(title);
+        container.appendChild(publisher);
+        container.appendChild(year);
+        container.appendChild(players);
+        container.appendChild(popularity);
+        container.appendChild(bggLink);
+      })
+      .catch(error => console.error("Error fetching boardgame details:", error));
+  </script>
+</body>
+</html>
