@@ -28,3 +28,5 @@ or choose a profile in Intellij and run.
    Used [JavaGuides - Service, Repository, Controller, and Component in Spring Boot](https://www.javaguides.net/2025/03/service-repository-controller-and-component-in-spring-boot.html) to understand and implement annotations in a Spring Boot application in main > src > kotlin > *
 6. **Creating Models, Services, Repositories, Controllers and HTTP requests with spring boot and H2 database**  
    Used [Github - Dev 4 herexamen Ryan Vankriekinge](https://github.com/EHB-MCT/dev4-herexamen-RyanVankriekinge) to create models, controllers, repositories, services and http requests in src > main > *
+7. **Using annotations to define relationships between entities**  
+   Used [Baeldung - JPA Hibernate associations](https://www.baeldung.com/jpa-hibernate-associations#bd-unidirectional-associations) to define relationships in in src > main > kotlin > be.ehb.gamelibrarian > model > *
