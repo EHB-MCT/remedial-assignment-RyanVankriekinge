@@ -1,0 +1,11 @@
+### Create a new user
+POST http://localhost:8080/api/boardgameUsers
+Content-Type: application/json
+
+{
+  "name": "Ryan Vankriekinge",
+  "email": "ryanvankriekinge@example.com"
+}
+
+### Get a user by ID
+GET http://localhost:8080/api/boardgameUsers/1
