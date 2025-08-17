@@ -15,7 +15,7 @@ data class Boardgame(
     @Column(nullable = false)
     val publisher: String,
 
-    @Column(nullable = false)
+    @Column(name = "release_year", nullable = false)
     val year: Int,
 
     @Column(nullable = false)
