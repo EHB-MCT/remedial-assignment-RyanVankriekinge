@@ -73,4 +73,9 @@ class LendingController(
     @GetMapping
     fun getAll(): List<LendingResponse> =
         lendingService.getAll().map { LendingResponse.from(it) }
+
+    @PutMapping("/{loanId}/return")
+    fun returnCopy(@PathVariable loanId: Long): Lending {
+        return lendingService.markAsReturned(loanId)
+    }
 }
