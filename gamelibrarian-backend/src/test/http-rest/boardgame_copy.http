@@ -9,7 +9,7 @@ POST http://localhost:8080/api/boardgameCopies
 Content-Type: application/json
 
 {
-  "boardgameId": 1,
+  "boardgameId": 3,
   "ownerId": 1
 }
 
