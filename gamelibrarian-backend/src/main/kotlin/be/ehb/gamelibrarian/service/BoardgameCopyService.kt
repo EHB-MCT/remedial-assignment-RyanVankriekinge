@@ -22,4 +22,7 @@ class BoardgameCopyService(
 
         return copies.save(BoardgameCopy(boardgame = game, owner = owner))
     }
+
+    fun get(id: Long): BoardgameCopy =
+        copies.findById(id).orElseThrow { NoSuchElementException("Copy $id not found") }
 }

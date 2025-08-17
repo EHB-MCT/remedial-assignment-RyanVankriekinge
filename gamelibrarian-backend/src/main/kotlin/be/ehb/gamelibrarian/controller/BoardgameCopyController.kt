@@ -29,4 +29,9 @@ class BoardgameCopyController(
         val copy = copyService.create(req.boardgameId, req.ownerId)
         return ResponseEntity.status(HttpStatus.CREATED).body(CopyResponse.from(copy))
     }
+
+    @GetMapping("/{id}")
+    fun get(@PathVariable id: Long): CopyResponse =
+        CopyResponse.from(copyService.get(id))
+
 }
