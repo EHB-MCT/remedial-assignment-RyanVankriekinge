@@ -13,7 +13,7 @@ class BoardgameService(
     fun create(
         title: String,
         publisher: String,
-        year: Int,
+        releaseYear: Int,
         minPlayers: Int,
         maxPlayers: Int,
         bggId: String? = null,
@@ -26,7 +26,7 @@ class BoardgameService(
             Boardgame(
                 title = title,
                 publisher = publisher,
-                year = year,
+                releaseYear = releaseYear,
                 minPlayers = minPlayers,
                 maxPlayers = maxPlayers,
                 bggId = bggId,
