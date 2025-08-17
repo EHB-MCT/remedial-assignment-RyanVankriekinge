@@ -30,5 +30,7 @@ or choose a profile in Intellij and run.
    Used [Github - Dev 4 herexamen Ryan Vankriekinge](https://github.com/EHB-MCT/dev4-herexamen-RyanVankriekinge) to create models, controllers, repositories, services and http requests in src > main > *
 7. **Using annotations to define relationships between entities**  
    Used [Baeldung - JPA Hibernate associations](https://www.baeldung.com/jpa-hibernate-associations#bd-unidirectional-associations) to define relationships in in src > main > kotlin > be.ehb.gamelibrarian > model > *
-8. **Save initial data in H2**  
+8. **Enable H2 console**  
    Used [StackOverflow - Configuring H2 database via Yaml Spring Boot](https://stackoverflow.com/questions/56463145/configuring-h2-database-via-yaml-spring-boot) to export data from memory.
+9. **Save H2 data to file**  
+   Used [ChatGPT - Save H2 Database data](https://chatgpt.com/share/68a1d9c7-6050-8002-b783-3decfbe7bd6b) to create data.sql file from H2 data.
