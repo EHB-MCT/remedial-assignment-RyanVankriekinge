@@ -1,9 +1,21 @@
+### Existing lending
 POST http://localhost:8080/api/lendings
 Content-Type: application/json
 
 {
   "copyId": 1,
   "borrowerId": 1,
+  "loanDeadline": "2025-09-01T12:00:00",
+  "statusId": 1
+}
+
+### New lending
+POST http://localhost:8080/api/lendings
+Content-Type: application/json
+
+{
+  "copyId": 2,
+  "borrowerId": 2,
   "loanDeadline": "2025-09-01T12:00:00",
   "statusId": 1
 }
