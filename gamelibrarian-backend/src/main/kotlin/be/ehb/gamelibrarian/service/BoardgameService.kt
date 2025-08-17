@@ -18,7 +18,8 @@ class BoardgameService(
         maxPlayers: Int,
         bggId: String? = null,
         bggURL: String? = null,
-        imageURL: String? = null
+        imageURL: String? = null,
+        popularity: Int = 0
     ): Boardgame {
         require(title.isNotBlank()) { "Title cannot be blank" }
         require(minPlayers > 0 && maxPlayers >= minPlayers) { "Invalid player counts" }
@@ -31,7 +32,8 @@ class BoardgameService(
                 maxPlayers = maxPlayers,
                 bggId = bggId,
                 bggURL = bggURL,
-                imageURL = imageURL
+                imageURL = imageURL,
+                popularity = 0
             )
         )
     }
