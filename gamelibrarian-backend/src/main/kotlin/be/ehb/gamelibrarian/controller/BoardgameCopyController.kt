@@ -34,4 +34,7 @@ class BoardgameCopyController(
     fun get(@PathVariable id: Long): CopyResponse =
         CopyResponse.from(copyService.get(id))
 
+    @GetMapping
+    fun getAll(): List<CopyResponse> =
+        copyService.getAll().map { CopyResponse.from(it) }
 }

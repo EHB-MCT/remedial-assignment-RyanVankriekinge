@@ -25,4 +25,6 @@ class BoardgameCopyService(
 
     fun get(id: Long): BoardgameCopy =
         copies.findById(id).orElseThrow { NoSuchElementException("Copy $id not found") }
+
+    fun getAll(): List<BoardgameCopy> = copies.findAll()
 }
