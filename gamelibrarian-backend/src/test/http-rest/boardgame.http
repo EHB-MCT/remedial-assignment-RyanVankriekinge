@@ -27,7 +27,7 @@ Content-Type: application/json
 {
 "title": "Alhambra",
 "publisher": "Queen Games",
-"year": 2003,
+"releaseYear": 2003,
 "minPlayers": 2,
 "maxPlayers": 6,
 "bggId": "6249",
@@ -42,7 +42,7 @@ Content-Type: application/json
 {
 "title": "Ticket to Ride: Europe",
 "publisher": "Days of Wonder",
-"year": 2005,
+"releaseYear": 2005,
 "minPlayers": 2,
 "maxPlayers": 5,
 "bggId": "14996",
