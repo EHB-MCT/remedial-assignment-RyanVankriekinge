@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/loanStatuses
+Content-Type: application/json
+
+{
+  "statusCode": "ONGOING",
+  "statusText": "Borrower is still lending the boardgame."
+}
+
+###
+POST http://localhost:8080/api/loanStatuses
+Content-Type: application/json
+
+{
+"statusCode": "RETURNED",
+"statusText": "Borrower returned the boardgame."
+}

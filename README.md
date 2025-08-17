@@ -19,8 +19,18 @@ or choose a profile in Intellij and run.
 1. **Creating .gitignore file**  
    Used [gitignore.io](https://www.toptal.com/developers/gitignore) to generate a `.gitignore` file for a Node.js project in .gitignore
 2. **Creating Spring Boot structure**
-   Used [Spring Initializr](https://start.spring.io/) to generate Spring Boot file structure.
+   Used [Spring Initializr](https://start.spring.io/) to generate Spring Boot file structure in main > src > *
 3. **Spring boot starters**
    Used [Baeldung - Web Starter](https://www.baeldung.com/spring-boot-starters#bd-Starter) to implement web starter in application.yml and build.gradle.kts
 4. **Spring boot JPA**
    Used [Baeldung - Data JPA Starter](https://www.baeldung.com/spring-boot-starters#bd-JPA) to implement JPA in application.yml and build.gradle.kts
+5. **Spring Boot service, repository, controller, and component**  
+   Used [JavaGuides - Service, Repository, Controller, and Component in Spring Boot](https://www.javaguides.net/2025/03/service-repository-controller-and-component-in-spring-boot.html) to understand and implement annotations in a Spring Boot application in main > src > kotlin > *
+6. **Creating Models, Services, Repositories, Controllers and HTTP requests with spring boot and H2 database**  
+   Used [Github - Dev 4 herexamen Ryan Vankriekinge](https://github.com/EHB-MCT/dev4-herexamen-RyanVankriekinge) to create models, controllers, repositories, services and http requests in src > main > *
+7. **Using annotations to define relationships between entities**  
+   Used [Baeldung - JPA Hibernate associations](https://www.baeldung.com/jpa-hibernate-associations#bd-unidirectional-associations) to define relationships in in src > main > kotlin > be.ehb.gamelibrarian > model > *
+8. **Enable H2 console**  
+   Used [StackOverflow - Configuring H2 database via Yaml Spring Boot](https://stackoverflow.com/questions/56463145/configuring-h2-database-via-yaml-spring-boot) to export data from memory.
+9. **Save H2 data to file**  
+   Used [ChatGPT - Save H2 Database data](https://chatgpt.com/share/68a1d9c7-6050-8002-b783-3decfbe7bd6b) to create data.sql file from H2 data.
