@@ -34,3 +34,5 @@ or choose a profile in Intellij and run.
    Used [StackOverflow - Configuring H2 database via Yaml Spring Boot](https://stackoverflow.com/questions/56463145/configuring-h2-database-via-yaml-spring-boot) to export data from memory.
 9. **Save H2 data to file**  
    Used [ChatGPT - Save H2 Database data](https://chatgpt.com/share/68a1d9c7-6050-8002-b783-3decfbe7bd6b) to create data.sql file from H2 data.
+10. **Incrementing the popularity property**  
+   Used [ChatGPT - Increment field with JPA](https://chatgpt.com/share/68a1fd0f-4d94-8002-93ee-a77b7a2a08cd) to increment the popularity property from Boardgame when a new Lending is created in src > main > kotlin > be.ehb.gamelibrarian > service > LendingService line 17-29
