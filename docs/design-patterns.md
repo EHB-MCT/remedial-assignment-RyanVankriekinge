@@ -45,3 +45,12 @@ Spring Boot creates only one instance of some classes (e.g. @Service) and reuses
 
 Sources:
 [Linkedin - Singleton Design Pattern in Java and Spring Boot: Understand and see it in practice!](https://www.linkedin.com/pulse/singleton-design-pattern-java-spring-boot-understand-see-bruno-haick-z2fhf#:~:text=In%20Spring%20Boot%2C%20the%20Singleton,managed%20by%20the%20Spring%20container.)
+
+### Data Transfer Object (DTO) Pattern
+DTOs are simple objects used to transfer data between layers of the application, without exposing the full entity. They help decouple the internal data model from the API and reduce unnecessary data being sent to the client.
+
+Used in: In this application, `BoardgameCopyDTO` is used to return boardgame copy information to the frontend, including the owner name and current status, without exposing the full `BoardgameCopy` entity.
+
+Sources:
+1. [Baeldung - Guide to DTOs in Spring](https://www.baeldung.com/java-dto-pattern)
+2. [Medium - DTO with Kotlin data classes](https://medium.com/@filipefox/introduction-8a1145c08d00)

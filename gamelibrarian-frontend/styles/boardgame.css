@@ -28,5 +28,27 @@
 }
 
 .boardgame-details a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
+}
+
+#ownersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#ownersTable th,
+#ownersTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+#ownersTable th {
+    background-color: #f2f2f2;
+}
+
+button.reserve-btn {
+    padding: 5px 10px;
+    cursor: pointer;
 }

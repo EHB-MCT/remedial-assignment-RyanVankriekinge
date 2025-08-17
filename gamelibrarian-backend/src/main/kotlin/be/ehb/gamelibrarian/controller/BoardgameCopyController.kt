@@ -1,5 +1,6 @@
 package be.ehb.gamelibrarian.controller
 
+import be.ehb.gamelibrarian.dto.BoardgameCopyDTO
 import be.ehb.gamelibrarian.model.BoardgameCopy
 import be.ehb.gamelibrarian.service.BoardgameCopyService
 import jakarta.validation.Valid
@@ -37,4 +38,9 @@ class BoardgameCopyController(
     @GetMapping
     fun getAll(): List<CopyResponse> =
         copyService.getAll().map { CopyResponse.from(it) }
+
+    @GetMapping("/boardgames/{boardgameId}/copies-info")
+    fun getCopiesInfo(@PathVariable boardgameId: Long): List<BoardgameCopyDTO> {
+        return copyService.getCopiesInfoForBoardgame(boardgameId)
+    }
 }

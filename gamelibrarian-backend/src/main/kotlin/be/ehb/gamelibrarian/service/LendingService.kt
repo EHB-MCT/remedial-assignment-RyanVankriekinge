@@ -16,6 +16,10 @@ class LendingService(
 ) {
     @Transactional
     fun create(lending: Lending): Lending {
+        val existing = lendings.findByCopyCopyIdAndReturnedAtIsNull(lending.copy.copyId)
+        if (existing != null) {
+            throw IllegalStateException("This copy is already lent out")
+        }
         val savedLending = lendings.save(lending)
         val boardgame = savedLending.copy.boardgame
 

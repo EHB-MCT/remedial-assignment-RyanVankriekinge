@@ -66,10 +66,12 @@ To run the server in production mode, set-up a 'pro' profile in IntelliJ and run
 9. **Save H2 data to file**  
    Used [ChatGPT - Save H2 Database data](https://chatgpt.com/share/68a1d9c7-6050-8002-b783-3decfbe7bd6b) to create data.sql file from H2 data.
 10. **Incrementing the popularity property**  
-   Used [ChatGPT - Increment field with JPA](https://chatgpt.com/share/68a1fd0f-4d94-8002-93ee-a77b7a2a08cd) to increment the popularity property from Boardgame when a new Lending is created in src > main > kotlin > be.ehb.gamelibrarian > service > LendingService line 17-29
+   Used [ChatGPT - Increment field with JPA](https://chatgpt.com/share/68a1fd0f-4d94-8002-93ee-a77b7a2a08cd) to increment the popularity property from Boardgame when a new Lending is created in src > main > kotlin > be.ehb.gamelibrarian > service > LendingService.kt line 17-29
 11. **Converting H2 file to PostgreSQL**  
    Used [Traccar - How I migrated from h2 to postgres](https://www.traccar.org/forums/topic/2023-ho-i-migrated-from-h2-to-postgres-in-linux/?utm_source=chatgpt.com) to create data_postgres.sql
 12. **Setting up a postgreSQL database with Podman**  
    Used [Github - Podman for Windows](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) and [Geeks for geeks - Set up a PostgreSQL database with podman](https://www.geeksforgeeks.org/devops/set-up-a-postgresql-database-with-podman/?utm_source=chatgpt.com) to set up my postgreSQL database with Podman.
 13. **Add front-end server address to CORS**  
    Used [Kotlin CORS guide](https://www.stackhawk.com/blog/kotlin-cors-guide-what-it-is-and-how-to-enable-it/) to add front-end live server to cors.
+14. **DTO in Kotlin with spring boot**
+   Used [Medium - DTO with Kotlin data classes](https://medium.com/@filipefox/introduction-8a1145c08d00) to create Data Transfer Object in src > main > kotlin > be.ehb.gamelibrarian > dto > BoardgameCopyDTO.kt

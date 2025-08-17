@@ -1,9 +1,11 @@
 package be.ehb.gamelibrarian.service
 
+import be.ehb.gamelibrarian.dto.BoardgameCopyDTO
 import be.ehb.gamelibrarian.model.BoardgameCopy
 import be.ehb.gamelibrarian.repository.BoardgameCopyRepository
 import be.ehb.gamelibrarian.repository.BoardgameRepository
 import be.ehb.gamelibrarian.repository.BoardgameUserRepository
+import be.ehb.gamelibrarian.repository.LendingRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -11,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional
 class BoardgameCopyService(
     private val copies: BoardgameCopyRepository,
     private val games: BoardgameRepository,
-    private val users: BoardgameUserRepository
+    private val users: BoardgameUserRepository,
+    private val lendings: LendingRepository
 ) {
     @Transactional
     fun create(boardgameId: Long, ownerId: Long): BoardgameCopy {
@@ -27,4 +30,25 @@ class BoardgameCopyService(
         copies.findById(id).orElseThrow { NoSuchElementException("Copy $id not found") }
 
     fun getAll(): List<BoardgameCopy> = copies.findAll()
+
+    fun getCopiesInfoForBoardgame(boardgameId: Long): List<BoardgameCopyDTO> {
+        val boardgameCopies = copies.findAll().filter { it.boardgame.boardgameId == boardgameId }
+
+        return boardgameCopies.map { copy ->
+            val latestLending = copy.copyId.let { copyId ->
+                lendings.findAll()
+                    .filter { it.copy.copyId == copyId }
+                    .maxByOrNull { it.loanTimestamp }
+            }
+
+            val status = latestLending?.status?.statusCode ?: "AVAILABLE"
+
+            BoardgameCopyDTO(
+                id = copy.copyId,
+                ownerName = copy.owner.name,
+                status = status
+            )
+        }
+    }
+
 }
