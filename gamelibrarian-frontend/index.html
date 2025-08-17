@@ -42,7 +42,7 @@
                     li.appendChild(title);
 
                     li.addEventListener('click', () => {
-                        alert(`Boardgame: ${game.title}`);
+                        window.location.href = `src/boardgame.html?id=${game.id}`;
                     });
 
                     list.appendChild(li);
