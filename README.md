@@ -36,3 +36,5 @@ or choose a profile in Intellij and run.
    Used [ChatGPT - Save H2 Database data](https://chatgpt.com/share/68a1d9c7-6050-8002-b783-3decfbe7bd6b) to create data.sql file from H2 data.
 10. **Incrementing the popularity property**  
    Used [ChatGPT - Increment field with JPA](https://chatgpt.com/share/68a1fd0f-4d94-8002-93ee-a77b7a2a08cd) to increment the popularity property from Boardgame when a new Lending is created in src > main > kotlin > be.ehb.gamelibrarian > service > LendingService line 17-29
+11. **Converting H2 file to PostgreSQL**  
+   Used [Traccar - How I migrated from h2 to postgres](https://www.traccar.org/forums/topic/2023-ho-i-migrated-from-h2-to-postgres-in-linux/?utm_source=chatgpt.com) to create data_postgres.sql
