@@ -26,5 +26,8 @@ data class Boardgame(
 
     val bggId: String? = null,
     val bggURL: String? = null,
-    val imageURL: String? = null
+    val imageURL: String? = null,
+
+    @Column(nullable = false)
+    var popularity: Int = 0
 )
