@@ -7,7 +7,7 @@
 ### Profiles
 The project uses Spring profiles for different environments:
 - `dev:` H2 database (Local memory) 
-- `prod:` PostgreSQL (for production)
+- `pro:` PostgreSQL (for production)
 ### Running in development mode
 To start the API with the dev profile and H2 database: <br>
 `./gradlew bootRun --args='--spring.profiles.active=dev'
@@ -69,6 +69,7 @@ To run the server in production mode, set-up a 'pro' profile in IntelliJ and run
    Used [ChatGPT - Increment field with JPA](https://chatgpt.com/share/68a1fd0f-4d94-8002-93ee-a77b7a2a08cd) to increment the popularity property from Boardgame when a new Lending is created in src > main > kotlin > be.ehb.gamelibrarian > service > LendingService line 17-29
 11. **Converting H2 file to PostgreSQL**  
    Used [Traccar - How I migrated from h2 to postgres](https://www.traccar.org/forums/topic/2023-ho-i-migrated-from-h2-to-postgres-in-linux/?utm_source=chatgpt.com) to create data_postgres.sql
-
 12. **Setting up a postgreSQL database with Podman**  
    Used [Github - Podman for Windows](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) and [Geeks for geeks - Set up a PostgreSQL database with podman](https://www.geeksforgeeks.org/devops/set-up-a-postgresql-database-with-podman/?utm_source=chatgpt.com) to set up my postgreSQL database with Podman.
+13. **Add front-end server address to CORS**  
+   Used [Kotlin CORS guide](https://www.stackhawk.com/blog/kotlin-cors-guide-what-it-is-and-how-to-enable-it/) to add front-end live server to cors.
