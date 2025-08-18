@@ -1,0 +1,21 @@
+   .collection-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .collection-table th, .collection-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    .collection-table th {
+      background-color: #f2f2f2;
+    }
+    .status-available {
+      color: green;
+      font-weight: bold;
+    }
+    .status-unavailable {
+      color: red;
+      font-weight: bold;
+    }
