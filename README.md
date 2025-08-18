@@ -58,6 +58,28 @@ To run the server in production mode, set-up a 'pro' profile in IntelliJ and run
 ## Database structure
 The main database structure can be found in [GameLibrarian.drawio](./docs/GameLibrarian.drawio). To visualise this file, load it into [draw.io](https://draw.io) 
 
+## API Endpoints
+Below is a summary of the main API endpoints. All responses are in JSON.
+
+| Method | Endpoint                           | Description                                    |
+|--------|------------------------------------|------------------------------------------------|
+| GET    | `/api/boardgames`                  | Get all boardgames                             |
+| GET    | `/api/boardgames/{id}`             | Get details of a specific boardgame            |
+| POST   | `/api/boardgames`                  | Add a new boardgame                            |
+| GET    | `/api/boardgames/{id}/copies`         | Get all boardgame copies for a specific boardgame |
+| GET    | `/api/boardgameUsers`                       | Get all users                                  |
+| GET    | `/api/boardgameUsers/{id}`                  | Get details of a specific user                 |
+| POST   | `/api/boardgameUsers`                       | Create a new user                              |
+| GET    | `/api/lendings`                    | Get all lendings                               |
+| POST   | `/api/lendings`                    | Create a new lending (increments popularity)   |
+| PUT    | `/api/lendings/{id}/return`        | Mark a lending as returned                     |
+| GET    | `/api/boardgameUsers/{id}/lendings`| Get all lendings for a specific user           |
+
+
+
+## Testing endpoints
+It is possible to test some of the endpoints of this application by using the tests in test > http-rest > *
+
 ## Front-end server set-up
 To start the front-end server, simply run a live server from gamelibrarian-frontend > index.html
 
