@@ -58,6 +58,10 @@ To run the server in production mode, set-up a 'pro' profile in IntelliJ and run
 ## Database structure
 The main database structure can be found in [GameLibrarian.drawio](./docs/GameLibrarian.drawio). To visualise this file, load it into [draw.io](https://draw.io) 
 
+## Front-end server set-up
+To start the front-end server, simply run a live server from gamelibrarian-frontend > index.html
+
+If your server's address is not http://127.0.0.1:5500/, you will need to add your address to CORS in src > main > kotlin > be.ehb.gamelibrarian > GamelibrarianApplication.kt
 ## References
 1. **Creating .gitignore file**  
    Used [gitignore.io](https://www.toptal.com/developers/gitignore) to generate a `.gitignore` file for a Node.js project in .gitignore
