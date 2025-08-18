@@ -2,6 +2,13 @@
 # Game Librarian
 ## Project overview
 Game Librarian is a web-based application designed to help boardgame enthusiasts manage their collections and track lending activity. The platform provides users with a centralized space to view, organize, and share their boardgames with friends while keeping track of who has borrowed which games and when they are due back.
+### Key features
+- User profiles: Each user can view their profile which shows their boardgame collection and lendings.
+- Collection overview: Each user can view which boardgames from their collection are lent out and which are available.
+- Lending system: Track lendings with loan date and deadline.
+- Dynamic popular boardgame overview: The home page shows the most popular boardgames based on how many times people lent them.
+- Dynamic sorting by availability: When looking at the details page of a boardgame, the available boardgames will be visible at the top.
+- BGG integration: Each boardgame has a link to the BoardGameGeek website, which provides even more details like ratings and pictures.
 ## Back-end server set-up
 ### Requirements
 - Java 21 or higher
