@@ -62,6 +62,13 @@ The main database structure can be found in [GameLibrarian.drawio](./docs/GameLi
 To start the front-end server, simply run a live server from gamelibrarian-frontend > index.html
 
 If your server's address is not http://127.0.0.1:5500/, you will need to add your address to CORS in src > main > kotlin > be.ehb.gamelibrarian > GamelibrarianApplication.kt
+
+## License
+This project is licensed under the [MIT License](./LICENSE).
+
+## Conventions and Design patterns
+This project uses several conventions and design patterns which are documented in [Conventions](./docs/conventions.md) and [Design patterns](./docs/design-patterns.md)
+
 ## References
 1. **Creating .gitignore file**  
    Used [gitignore.io](https://www.toptal.com/developers/gitignore) to generate a `.gitignore` file for a Node.js project in .gitignore
