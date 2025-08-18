@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Game Librarian</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="src/boardgames.html">All Boardgames</a></li>
+                <li><a href="src/profile.html">Profile</a></li>
+            </ul>
+        </nav>
+
+        <h1>Most popular Boardgames</h1>
+        <ul id="boardgameList"></ul>
+    </div>
+
+    <script>
+    fetch('http://localhost:8080/api/boardgames')
+        .then(response => response.json())
+        .then(boardgames => {
+            boardgames.sort((a, b) => b.popularity - a.popularity);
+
+            const list = document.getElementById('boardgameList');
+
+            boardgames.forEach(game => {
+                const li = document.createElement('li');
+                li.className = 'game-card';
+
+                const img = document.createElement('img');
+                img.src = game.imageURL;
+                img.alt = game.title;
+
+                const title = document.createElement('h2');
+                title.textContent = game.title;
+
+                li.appendChild(img);
+                li.appendChild(title);
+
+                li.addEventListener('click', () => {
+                    window.location.href = `src/boardgame.html?id=${game.id}`;
+                });
+
+                list.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error fetching boardgames:', error));
+</script>
+
+</body>
+
+</html>

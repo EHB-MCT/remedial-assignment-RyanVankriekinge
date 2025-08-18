@@ -14,3 +14,15 @@ All Kotlin code in this project follows the IntelliJ IDEA Kotlin code style conv
 More info: 
 - [Kotlin - Coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
 - [IntelliJ IDEA - Code Style. Kotlin](https://www.jetbrains.com/help/idea/code-style-kotlin.html#wrapping_and_braces_tab)
+
+### PostgreSQL naming conventions
+This project follows standard PostgreSQL naming conventions:
+- Identifiers (tables, columns, indexes, constraints) in lowercase with snake_case
+- Primary keys are named (table)_id
+- Foreign keys reference the related table
+- SQL keywords in UPPERCASE
+
+
+Sources:
+- [Geeks for geeks - PostgreSQL Naming conventions](https://www.geeksforgeeks.org/postgresql/postgresql-naming-conventions/)
+- [StackOverflow - PostgreSQL naming conventions](https://stackoverflow.com/questions/2878248/postgresql-naming-conventions)

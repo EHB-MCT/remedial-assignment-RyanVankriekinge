@@ -1,0 +1,66 @@
+.boardgame-details {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.boardgame-details img {
+  max-width: 300px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.boardgame-details h1 {
+  margin-bottom: 10px;
+}
+
+.boardgame-details p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.boardgame-details a {
+  display: inline-block;
+  margin-top: 15px;
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.boardgame-details a:hover {
+  text-decoration: underline;
+}
+
+#ownersTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#ownersTable th,
+#ownersTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+#ownersTable th {
+  background-color: #f2f2f2;
+}
+
+button.reserve-btn {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#reservePopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #000000;
+  padding: 20px;
+  z-index: 1000;
+}

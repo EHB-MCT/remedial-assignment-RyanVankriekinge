@@ -33,7 +33,8 @@ class BoardgameController(
         val maxPlayers: Int,
         val bggId: String?,
         val bggURL: String?,
-        val imageURL: String?
+        val imageURL: String?,
+        val popularity: Int
     ) {
         companion object {
             fun from(bg: Boardgame) = BoardgameResponse(
@@ -45,7 +46,8 @@ class BoardgameController(
                 bg.maxPlayers,
                 bg.bggId,
                 bg.bggURL,
-                bg.imageURL
+                bg.imageURL,
+                popularity = bg.popularity
             )
         }
     }

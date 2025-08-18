@@ -31,7 +31,8 @@ class BoardgameService(
                 maxPlayers = maxPlayers,
                 bggId = bggId,
                 bggURL = bggURL,
-                imageURL = imageURL
+                imageURL = imageURL,
+                popularity = 0
             )
         )
     }

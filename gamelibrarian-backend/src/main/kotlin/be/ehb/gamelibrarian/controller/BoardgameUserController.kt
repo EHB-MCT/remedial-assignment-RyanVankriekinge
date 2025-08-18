@@ -1,7 +1,13 @@
 package be.ehb.gamelibrarian.controller
 
+import be.ehb.gamelibrarian.dto.BoardgameCopyDTO
+import be.ehb.gamelibrarian.dto.UserBoardgameCopyDTO
+import be.ehb.gamelibrarian.dto.UserLendingDTO
 import be.ehb.gamelibrarian.model.BoardgameUser
+import be.ehb.gamelibrarian.repository.LendingRepository
+import be.ehb.gamelibrarian.service.BoardgameCopyService
 import be.ehb.gamelibrarian.service.BoardgameUserService
+import be.ehb.gamelibrarian.service.LendingService
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
@@ -12,7 +18,10 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/boardgameUsers")
 class BoardgameUserController(
-    private val userService: BoardgameUserService
+    private val userService: BoardgameUserService,
+    private val lendings: LendingRepository,
+    private val boardgameCopyService: BoardgameCopyService,
+    private val lendingService: LendingService
 ) {
     data class CreateUserRequest(
         @field:NotBlank val name: String,
@@ -33,4 +42,20 @@ class BoardgameUserController(
     @GetMapping("/{id}")
     fun get(@PathVariable id: Long): UserResponse =
         UserResponse.from(userService.get(id))
+
+    @GetMapping
+    fun getAll(): List<UserResponse> =
+        userService.getAll().map { UserResponse.from(it) }
+
+    @GetMapping("/{id}/boardgameCopies")
+    fun getUserCollection(@PathVariable id: Long): List<UserBoardgameCopyDTO> {
+        return boardgameCopyService.getCopiesByUser(id)
+    }
+
+    @GetMapping("/{id}/lendings")
+    fun getUserLendings(@PathVariable id: Long): List<UserLendingDTO> =
+        lendingService.getLendingsByUser(id)
+
+
+
 }

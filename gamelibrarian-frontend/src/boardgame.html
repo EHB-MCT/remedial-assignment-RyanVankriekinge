@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Boardgame Details</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="navbar">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="boardgames.html">All Boardgames</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
+
+    <div id="boardgameDetails" class="boardgame-details"></div>
+
+    <div id="boardgameCopies" class="boardgame-copies">
+      <h2>Owners & Status</h2>
+      <table id="ownersTable">
+        <thead>
+          <tr>
+            <th>Owner</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="popupOverlay"></div>
+  <div id="reservePopup">
+    <h3>Reserve Boardgame</h3>
+    <label for="userSelect">Select your username:</label>
+    <select id="userSelect"></select>
+    <br><br>
+    <button id="confirmReserve">Reserve</button>
+    <button id="cancelReserve">Cancel</button>
+  </div>
+
+  <script>
+    const gameId = new URLSearchParams(window.location.search).get("id");
+    let selectedCopyId = null;
+    let users = [];
+
+    fetch(`http://localhost:8080/api/boardgames/${gameId}`)
+      .then(res => res.json())
+      .then(game => {
+        const container = document.getElementById('boardgameDetails');
+
+        container.innerHTML = `
+          <img src="${game.imageURL}" alt="${game.title}">
+          <h1>${game.title}</h1>
+          <p>Publisher: ${game.publisher}</p>
+          <p>Release Year: ${game.releaseYear}</p>
+          <p>Players: ${game.minPlayers} - ${game.maxPlayers}</p>
+          <p>Popularity: ${game.popularity}</p>
+          <a href="${game.bggURL}" target="_blank">View on BoardGameGeek</a>
+        `;
+      })
+      .catch(err => console.error("Error fetching boardgame details:", err));
+
+    fetch(`http://localhost:8080/api/boardgameCopies/boardgames/${gameId}/copies-info`)
+      .then(res => res.json())
+      .then(copies => {
+        copies.sort((a, b) => (a.status === "AVAILABLE" && b.status !== "AVAILABLE") ? -1 :
+          (a.status !== "AVAILABLE" && b.status === "AVAILABLE") ? 1 : 0);
+
+        const tbody = document.querySelector('#ownersTable tbody');
+        tbody.innerHTML = '';
+
+        copies.forEach(copy => {
+          const tr = document.createElement('tr');
+
+          const ownerTd = document.createElement('td');
+          ownerTd.textContent = copy.ownerName;
+
+          const statusTd = document.createElement('td');
+          statusTd.textContent = copy.status;
+          statusTd.style.color = copy.status === "AVAILABLE" ? "green" : "red";
+
+          const actionTd = document.createElement('td');
+          if (copy.status === "AVAILABLE") {
+            const btn = document.createElement('button');
+            btn.textContent = "Reserve";
+            btn.onclick = () => showReservePopup(copy.copyId);
+            actionTd.appendChild(btn);
+          }
+
+          tr.appendChild(ownerTd);
+          tr.appendChild(statusTd);
+          tr.appendChild(actionTd);
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(err => console.error("Error fetching boardgame copies:", err));
+
+    fetch('http://localhost:8080/api/boardgameUsers')
+      .then(res => res.json())
+      .then(data => {
+        users = data;
+        const select = document.getElementById('userSelect');
+        select.innerHTML = '';
+        users.forEach(u => {
+          const opt = document.createElement('option');
+          opt.value = u.boardgameUserId;
+          opt.textContent = u.name;
+          select.appendChild(opt);
+        });
+      })
+      .catch(err => console.error("Error fetching users:", err));
+    const popup = document.getElementById('reservePopup');
+    const overlay = document.getElementById('popupOverlay');
+
+    function showReservePopup(copyId) {
+      selectedCopyId = copyId;
+      popup.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+
+    function hideReservePopup() {
+      selectedCopyId = null;
+      popup.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+
+    document.getElementById('cancelReserve').onclick = hideReservePopup;
+
+    document.getElementById('confirmReserve').onclick = () => {
+  const borrowerId = parseInt(document.getElementById('userSelect').value);
+
+  const deadline = new Date();
+  deadline.setDate(deadline.getDate() + 7);
+
+  const body = {
+    copyId: selectedCopyId,
+    borrowerId: borrowerId,
+    loanDeadline: deadline.toISOString().slice(0, 19),
+    statusId: 1
+  };
+
+  fetch("http://localhost:8080/api/lendings", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  })
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      alert("Boardgame reserved successfully!");
+      hideReservePopup();
+      location.reload();
+    })
+    .catch(err => console.error("Error reserving boardgame:", err));
+};
+  </script>
+</body>
+
+</html>

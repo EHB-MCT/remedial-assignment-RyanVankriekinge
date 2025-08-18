@@ -28,14 +28,15 @@ spring:
 spring:
   config:
     activate:
-      on-profile: prod
+      on-profile: pro
 
   datasource:
     url: jdbc:postgresql://localhost:5432/gamelibrarian
-    username: todo
-    password: todo
+    username: app
+    password: app_pw
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: PUBLIC
