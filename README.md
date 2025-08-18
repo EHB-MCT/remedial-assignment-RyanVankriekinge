@@ -55,6 +55,9 @@ Run:
 ### 9. Run in production mode
 To run the server in production mode, set-up a 'pro' profile in IntelliJ and run.
 
+## Database structure
+The main database structure can be found in [GameLibrarian.drawio](./docs/GameLibrarian.drawio). To visualise this file, load it into [draw.io](https://draw.io) 
+
 ## References
 1. **Creating .gitignore file**  
    Used [gitignore.io](https://www.toptal.com/developers/gitignore) to generate a `.gitignore` file for a Node.js project in .gitignore
