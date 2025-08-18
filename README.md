@@ -1,5 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/BhMy8Rjk)
 # Game Librarian
+## Project overview
+Game Librarian is a web-based application designed to help boardgame enthusiasts manage their collections and track lending activity. The platform provides users with a centralized space to view, organize, and share their boardgames with friends while keeping track of who has borrowed which games and when they are due back.
 ## Back-end server set-up
 ### Requirements
 - Java 21 or higher
