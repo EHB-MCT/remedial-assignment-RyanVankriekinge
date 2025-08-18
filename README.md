@@ -1,5 +1,14 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/BhMy8Rjk)
 # Game Librarian
+## Project overview
+Game Librarian is a web-based application designed to help boardgame enthusiasts manage their collections and track lending activity. The platform provides users with a centralized space to view, organize, and share their boardgames with friends while keeping track of who has borrowed which games and when they are due back.
+### Key features
+- User profiles: Each user can view their profile which shows their boardgame collection and lendings.
+- Collection overview: Each user can view which boardgames from their collection are lent out and which are available.
+- Lending system: Track lendings with loan date and deadline.
+- Dynamic popular boardgame overview: The home page shows the most popular boardgames based on how many times people lent them.
+- Dynamic sorting by availability: When looking at the details page of a boardgame, the available boardgames will be visible at the top.
+- BGG integration: Each boardgame has a link to the BoardGameGeek website, which provides even more details like ratings and pictures.
 ## Back-end server set-up
 ### Requirements
 - Java 21 or higher
@@ -45,6 +54,42 @@ Run:
 
 ### 9. Run in production mode
 To run the server in production mode, set-up a 'pro' profile in IntelliJ and run.
+
+## Database structure
+The main database structure can be found in [GameLibrarian.drawio](./docs/GameLibrarian.drawio). To visualise this file, load it into [draw.io](https://draw.io) 
+
+## API Endpoints
+Below is a summary of the main API endpoints. All responses are in JSON.
+
+| Method | Endpoint                           | Description                                    |
+|--------|------------------------------------|------------------------------------------------|
+| GET    | `/api/boardgames`                  | Get all boardgames                             |
+| GET    | `/api/boardgames/{id}`             | Get details of a specific boardgame            |
+| POST   | `/api/boardgames`                  | Add a new boardgame                            |
+| GET    | `/api/boardgames/{id}/copies`         | Get all boardgame copies for a specific boardgame |
+| GET    | `/api/boardgameUsers`                       | Get all users                                  |
+| GET    | `/api/boardgameUsers/{id}`                  | Get details of a specific user                 |
+| POST   | `/api/boardgameUsers`                       | Create a new user                              |
+| GET    | `/api/lendings`                    | Get all lendings                               |
+| POST   | `/api/lendings`                    | Create a new lending (increments popularity)   |
+| PUT    | `/api/lendings/{id}/return`        | Mark a lending as returned                     |
+| GET    | `/api/boardgameUsers/{id}/lendings`| Get all lendings for a specific user           |
+
+
+
+## Testing endpoints
+It is possible to test some of the endpoints of this application by using the tests in test > http-rest > *
+
+## Front-end server set-up
+To start the front-end server, simply run a live server from gamelibrarian-frontend > index.html
+
+If your server's address is not http://127.0.0.1:5500/, you will need to add your address to CORS in src > main > kotlin > be.ehb.gamelibrarian > GamelibrarianApplication.kt
+
+## License
+This project is licensed under the [MIT License](./LICENSE).
+
+## Conventions and Design patterns
+This project uses several conventions and design patterns which are documented in [Conventions](./docs/conventions.md) and [Design patterns](./docs/design-patterns.md)
 
 ## References
 1. **Creating .gitignore file**  
