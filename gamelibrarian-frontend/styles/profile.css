@@ -1,21 +1,58 @@
    .collection-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    .collection-table th, .collection-table td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
-    }
-    .collection-table th {
-      background-color: #f2f2f2;
-    }
-    .status-available {
-      color: green;
-      font-weight: bold;
-    }
-    .status-unavailable {
-      color: red;
-      font-weight: bold;
-    }
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 20px;
+   }
+
+   .collection-table th,
+   .collection-table td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     text-align: left;
+   }
+
+   .collection-table th {
+     background-color: #f2f2f2;
+   }
+
+   .status-available {
+     color: green;
+     font-weight: bold;
+   }
+
+   .status-unavailable {
+     color: red;
+     font-weight: bold;
+   }
+
+   .lendings-table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-top: 20px;
+   }
+
+   .lendings-table th,
+   .lendings-table td {
+     border: 1px solid #ccc;
+     padding: 8px;
+     text-align: left;
+   }
+
+   .lendings-table th {
+     background-color: #f2f2f2;
+   }
+
+   .status-active {
+     color: green;
+     font-weight: bold;
+   }
+
+   .status-returned {
+     color: gray;
+     font-style: italic;
+   }
+
+   .status-late {
+     color: red;
+     font-weight: bold;
+   }

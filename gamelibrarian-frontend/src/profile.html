@@ -34,11 +34,27 @@
         <tbody></tbody>
       </table>
     </div>
+
+    <div id="userLendings">
+      <h2>User Lendings</h2>
+      <table class="lendings-table" id="lendingsTable">
+        <thead>
+          <tr>
+            <th>Boardgame</th>
+            <th>Status</th>
+            <th>Loan Date</th>
+            <th>Deadline</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 
   <script>
     const userSelect = document.getElementById('userSelect');
     const collectionTableBody = document.querySelector('#collectionTable tbody');
+    const lendingsTableBody = document.querySelector('#lendingsTable tbody');
 
     fetch('http://localhost:8080/api/boardgameUsers')
       .then(response => response.json())
@@ -55,6 +71,7 @@
     userSelect.addEventListener('change', () => {
       const userId = userSelect.value;
       collectionTableBody.innerHTML = '';
+      lendingsTableBody.innerHTML = '';
 
       if (!userId) return;
 
@@ -77,6 +94,33 @@
           });
         })
         .catch(err => console.error('Error fetching collection:', err));
+
+      fetch(`http://localhost:8080/api/boardgameUsers/${userId}/lendings`)
+        .then(response => response.json())
+        .then(lendings => {
+          lendings.forEach(lending => {
+            const tr = document.createElement('tr');
+
+            const boardgameTd = document.createElement('td');
+            boardgameTd.textContent = lending.boardgameTitle;
+
+            const statusTd = document.createElement('td');
+            statusTd.textContent = lending.status;
+
+            const loanDateTd = document.createElement('td');
+            loanDateTd.textContent = lending.loanDate || '';
+
+            const returnDateTd = document.createElement('td');
+            returnDateTd.textContent = lending.loanDeadline || '';
+
+            tr.appendChild(boardgameTd);
+            tr.appendChild(statusTd);
+            tr.appendChild(loanDateTd);
+            tr.appendChild(returnDateTd);
+            lendingsTableBody.appendChild(tr);
+          });
+        })
+        .catch(err => console.error('Error fetching lendings:', err));
     });
   </script>
 </body>

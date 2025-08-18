@@ -2,6 +2,7 @@ package be.ehb.gamelibrarian.controller
 
 import be.ehb.gamelibrarian.dto.BoardgameCopyDTO
 import be.ehb.gamelibrarian.dto.UserBoardgameCopyDTO
+import be.ehb.gamelibrarian.dto.UserLendingDTO
 import be.ehb.gamelibrarian.model.BoardgameUser
 import be.ehb.gamelibrarian.repository.LendingRepository
 import be.ehb.gamelibrarian.service.BoardgameCopyService
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.*
 class BoardgameUserController(
     private val userService: BoardgameUserService,
     private val lendings: LendingRepository,
-    private val boardgameCopyService: BoardgameCopyService
+    private val boardgameCopyService: BoardgameCopyService,
+    private val lendingService: LendingService
 ) {
     data class CreateUserRequest(
         @field:NotBlank val name: String,
@@ -49,6 +51,11 @@ class BoardgameUserController(
     fun getUserCollection(@PathVariable id: Long): List<UserBoardgameCopyDTO> {
         return boardgameCopyService.getCopiesByUser(id)
     }
+
+    @GetMapping("/{id}/lendings")
+    fun getUserLendings(@PathVariable id: Long): List<UserLendingDTO> =
+        lendingService.getLendingsByUser(id)
+
 
 
 }
