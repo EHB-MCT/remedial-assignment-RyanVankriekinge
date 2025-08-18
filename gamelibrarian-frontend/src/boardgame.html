@@ -132,16 +132,35 @@
     document.getElementById('cancelReserve').onclick = hideReservePopup;
 
     document.getElementById('confirmReserve').onclick = () => {
-      const borrowerId = document.getElementById('userSelect').value;
-      const deadline = new Date();
-      deadline.setDate(deadline.getDate() + 7); 
+  const borrowerId = parseInt(document.getElementById('userSelect').value);
 
-      const body = {
-        copyId: selectedCopyId,
-        borrowerId: borrowerId,
-        loanDeadline: deadline.toISOString().slice(0, 19), 
-        statusId: 1
-      };
+  const deadline = new Date();
+  deadline.setDate(deadline.getDate() + 7);
+
+  const body = {
+    copyId: selectedCopyId,
+    borrowerId: borrowerId,
+    loanDeadline: deadline.toISOString().slice(0, 19),
+    statusId: 1
+  };
+
+  fetch("http://localhost:8080/api/lendings", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  })
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      alert("Boardgame reserved successfully!");
+      hideReservePopup();
+      location.reload();
+    })
+    .catch(err => console.error("Error reserving boardgame:", err));
+};
   </script>
 </body>
+
 </html>
