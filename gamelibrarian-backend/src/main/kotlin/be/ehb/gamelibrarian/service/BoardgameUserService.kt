@@ -20,4 +20,9 @@ class BoardgameUserService(
 
     fun get(id: Long): BoardgameUser =
         users.findById(id).orElseThrow { NoSuchElementException("User $id not found") }
+
+    fun getAll(): List<BoardgameUser> {
+        return users.findAll()
+    }
+
 }
