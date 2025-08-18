@@ -1,0 +1,10 @@
+@import url(gamecard.css);
+@import url(nav.css);
+@import url(boardgame.css);
+@import url(profile.css);
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
