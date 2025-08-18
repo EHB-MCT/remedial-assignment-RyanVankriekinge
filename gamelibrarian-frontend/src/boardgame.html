@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Boardgame Details</title>
   <link rel="stylesheet" href="../styles/styles.css">
 </head>
+
 <body>
   <div class="wrapper">
     <nav class="navbar">
@@ -24,70 +26,54 @@
           <tr>
             <th>Owner</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
     </div>
   </div>
+  <div id="popupOverlay"></div>
+  <div id="reservePopup">
+    <h3>Reserve Boardgame</h3>
+    <label for="userSelect">Select your username:</label>
+    <select id="userSelect"></select>
+    <br><br>
+    <button id="confirmReserve">Reserve</button>
+    <button id="cancelReserve">Cancel</button>
+  </div>
 
   <script>
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
-
-    const gameId = getQueryParam("id");
+    const gameId = new URLSearchParams(window.location.search).get("id");
+    let selectedCopyId = null;
+    let users = [];
 
     fetch(`http://localhost:8080/api/boardgames/${gameId}`)
-      .then(response => response.json())
+      .then(res => res.json())
       .then(game => {
         const container = document.getElementById('boardgameDetails');
 
-        const img = document.createElement('img');
-        img.src = game.imageURL;
-        img.alt = game.title;
-
-        const title = document.createElement('h1');
-        title.textContent = game.title;
-
-        const publisher = document.createElement('p');
-        publisher.textContent = `Publisher: ${game.publisher}`;
-
-        const year = document.createElement('p');
-        year.textContent = `Release Year: ${game.releaseYear}`;
-
-        const players = document.createElement('p');
-        players.textContent = `Players: ${game.minPlayers} - ${game.maxPlayers}`;
-
-        const popularity = document.createElement('p');
-        popularity.textContent = `Popularity: ${game.popularity}`;
-
-        const bggLink = document.createElement('a');
-        bggLink.href = game.bggURL;
-        bggLink.textContent = "View on BoardGameGeek";
-        bggLink.target = "_blank";
-
-        container.appendChild(img);
-        container.appendChild(title);
-        container.appendChild(publisher);
-        container.appendChild(year);
-        container.appendChild(players);
-        container.appendChild(popularity);
-        container.appendChild(bggLink);
+        container.innerHTML = `
+          <img src="${game.imageURL}" alt="${game.title}">
+          <h1>${game.title}</h1>
+          <p>Publisher: ${game.publisher}</p>
+          <p>Release Year: ${game.releaseYear}</p>
+          <p>Players: ${game.minPlayers} - ${game.maxPlayers}</p>
+          <p>Popularity: ${game.popularity}</p>
+          <a href="${game.bggURL}" target="_blank">View on BoardGameGeek</a>
+        `;
       })
-      .catch(error => console.error("Error fetching boardgame details:", error));
+      .catch(err => console.error("Error fetching boardgame details:", err));
 
     fetch(`http://localhost:8080/api/boardgameCopies/boardgames/${gameId}/copies-info`)
-      .then(response => response.json())
+      .then(res => res.json())
       .then(copies => {
-        copies.sort((a, b) => {
-          if (a.status === "AVAILABLE" && b.status !== "AVAILABLE") return -1;
-          if (a.status !== "AVAILABLE" && b.status === "AVAILABLE") return 1;
-          return 0; 
-        });
+        copies.sort((a, b) => (a.status === "AVAILABLE" && b.status !== "AVAILABLE") ? -1 :
+          (a.status !== "AVAILABLE" && b.status === "AVAILABLE") ? 1 : 0);
 
         const tbody = document.querySelector('#ownersTable tbody');
+        tbody.innerHTML = '';
+
         copies.forEach(copy => {
           const tr = document.createElement('tr');
 
@@ -96,19 +82,66 @@
 
           const statusTd = document.createElement('td');
           statusTd.textContent = copy.status;
+          statusTd.style.color = copy.status === "AVAILABLE" ? "green" : "red";
 
+          const actionTd = document.createElement('td');
           if (copy.status === "AVAILABLE") {
-            statusTd.style.color = "green";
-          } else {
-            statusTd.style.color = "red";
+            const btn = document.createElement('button');
+            btn.textContent = "Reserve";
+            btn.onclick = () => showReservePopup(copy.copyId);
+            actionTd.appendChild(btn);
           }
 
           tr.appendChild(ownerTd);
           tr.appendChild(statusTd);
+          tr.appendChild(actionTd);
           tbody.appendChild(tr);
         });
       })
-      .catch(error => console.error("Error fetching boardgame copies:", error));
+      .catch(err => console.error("Error fetching boardgame copies:", err));
+
+    fetch('http://localhost:8080/api/boardgameUsers')
+      .then(res => res.json())
+      .then(data => {
+        users = data;
+        const select = document.getElementById('userSelect');
+        select.innerHTML = '';
+        users.forEach(u => {
+          const opt = document.createElement('option');
+          opt.value = u.boardgameUserId;
+          opt.textContent = u.name;
+          select.appendChild(opt);
+        });
+      })
+      .catch(err => console.error("Error fetching users:", err));
+    const popup = document.getElementById('reservePopup');
+    const overlay = document.getElementById('popupOverlay');
+
+    function showReservePopup(copyId) {
+      selectedCopyId = copyId;
+      popup.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+
+    function hideReservePopup() {
+      selectedCopyId = null;
+      popup.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+
+    document.getElementById('cancelReserve').onclick = hideReservePopup;
+
+    document.getElementById('confirmReserve').onclick = () => {
+      const borrowerId = document.getElementById('userSelect').value;
+      const deadline = new Date();
+      deadline.setDate(deadline.getDate() + 7); 
+
+      const body = {
+        copyId: selectedCopyId,
+        borrowerId: borrowerId,
+        loanDeadline: deadline.toISOString().slice(0, 19), 
+        statusId: 1
+      };
   </script>
 </body>
 </html>
