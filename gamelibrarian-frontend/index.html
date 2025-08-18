@@ -22,34 +22,37 @@
     </div>
 
     <script>
-        fetch('http://localhost:8080/api/boardgames')
-            .then(response => response.json())
-            .then(boardgames => {
-                const list = document.getElementById('boardgameList');
+    fetch('http://localhost:8080/api/boardgames')
+        .then(response => response.json())
+        .then(boardgames => {
+            boardgames.sort((a, b) => b.popularity - a.popularity);
 
-                boardgames.forEach(game => {
-                    const li = document.createElement('li');
-                    li.className = 'game-card';
+            const list = document.getElementById('boardgameList');
 
-                    const img = document.createElement('img');
-                    img.src = game.imageURL;
-                    img.alt = game.title;
+            boardgames.forEach(game => {
+                const li = document.createElement('li');
+                li.className = 'game-card';
 
-                    const title = document.createElement('h2');
-                    title.textContent = game.title;
+                const img = document.createElement('img');
+                img.src = game.imageURL;
+                img.alt = game.title;
 
-                    li.appendChild(img);
-                    li.appendChild(title);
+                const title = document.createElement('h2');
+                title.textContent = game.title;
 
-                    li.addEventListener('click', () => {
-                        window.location.href = `src/boardgame.html?id=${game.id}`;
-                    });
+                li.appendChild(img);
+                li.appendChild(title);
 
-                    list.appendChild(li);
+                li.addEventListener('click', () => {
+                    window.location.href = `src/boardgame.html?id=${game.id}`;
                 });
-            })
-            .catch(error => console.error('Error fetching boardgames:', error));
-    </script>
+
+                list.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error fetching boardgames:', error));
+</script>
+
 </body>
 
 </html>

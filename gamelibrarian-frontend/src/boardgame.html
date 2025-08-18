@@ -81,6 +81,12 @@
     fetch(`http://localhost:8080/api/boardgameCopies/boardgames/${gameId}/copies-info`)
       .then(response => response.json())
       .then(copies => {
+        copies.sort((a, b) => {
+          if (a.status === "AVAILABLE" && b.status !== "AVAILABLE") return -1;
+          if (a.status !== "AVAILABLE" && b.status === "AVAILABLE") return 1;
+          return 0; 
+        });
+
         const tbody = document.querySelector('#ownersTable tbody');
         copies.forEach(copy => {
           const tr = document.createElement('tr');
@@ -91,7 +97,7 @@
           const statusTd = document.createElement('td');
           statusTd.textContent = copy.status;
 
-          if(copy.status === "AVAILABLE") {
+          if (copy.status === "AVAILABLE") {
             statusTd.style.color = "green";
           } else {
             statusTd.style.color = "red";
