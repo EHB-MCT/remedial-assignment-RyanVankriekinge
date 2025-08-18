@@ -1,6 +1,7 @@
 package be.ehb.gamelibrarian.service
 
 import be.ehb.gamelibrarian.dto.BoardgameCopyDTO
+import be.ehb.gamelibrarian.dto.UserBoardgameCopyDTO
 import be.ehb.gamelibrarian.model.BoardgameCopy
 import be.ehb.gamelibrarian.repository.BoardgameCopyRepository
 import be.ehb.gamelibrarian.repository.BoardgameRepository
@@ -50,5 +51,24 @@ class BoardgameCopyService(
             )
         }
     }
+    @Transactional(readOnly = true)
+    fun getCopiesByUser(userId: Long): List<UserBoardgameCopyDTO> {
+        val user = users.findById(userId)
+            .orElseThrow { NoSuchElementException("User $userId not found") }
 
+        val userCopies: List<BoardgameCopy> = user.boardgameCopies
+
+        return userCopies.map { copy ->
+            val latestLending = lendings.findAll()
+                .filter { it.copy.copyId == copy.copyId }
+                .maxByOrNull { it.loanTimestamp }
+
+            val status = latestLending?.status?.statusCode ?: "AVAILABLE"
+
+            UserBoardgameCopyDTO(
+                boardgameTitle = copy.boardgame.title,
+                status = status
+            )
+        }
+    }
 }

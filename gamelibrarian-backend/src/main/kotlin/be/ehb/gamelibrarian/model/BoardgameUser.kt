@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -18,5 +19,8 @@ data class BoardgameUser(
     val name: String,
 
     @Column(nullable = false, unique = true)
-    val email: String
+    val email: String,
+
+    @OneToMany(mappedBy = "owner")
+    val boardgameCopies: List<BoardgameCopy> = emptyList()
 )
